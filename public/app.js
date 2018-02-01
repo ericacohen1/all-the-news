@@ -70,4 +70,14 @@ $(document).on("click", "p", function() {
     $("#bodyinput").val("");
   });
   
-  
+  $(document).on("click", "#deletenote", function(){
+    var thisId = $(this).attr("data-id");
+    $.ajax({
+        method: "DELETE",
+        url: "/delete/" + thisId
+    }).done(function(data){
+        $("#notes").empty();
+    });
+        $("#titleinput").val("");
+        $("#bodyinput").val("");
+  })
