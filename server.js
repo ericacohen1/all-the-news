@@ -138,6 +138,21 @@ app.post("/articles/:id", function (req, res) {
     });
 });
 
+app.delete("/delete/:id", function (req, res) {
+    var id = req.params.id.toString();
+    Note.remove({
+        "_id": id
+    })
+    .exec(function(err, doc) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("Note has been deleted");
+            res.redirect("/");
+        }
+    })
+})
+
 // Start the server
 app.listen(PORT, function () {
     console.log("App running on port " + PORT + "!");
