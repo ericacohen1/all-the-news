@@ -37,15 +37,10 @@ app.use(express.static(path.join(__dirname, "public")));
 mongoose.Promise = Promise;
 
 if(process.env.MONGODB_URI) {
-    mongoose.connect(process.env.MONGO_URI, {
-        useMongoClient: true
-    });
+    mongoose.connect(process.env.MONGO_URI);
 } else {
-    mongoose.connect("mongodb://localhost/project", {
-        useMongoClient: true
-    })
+    mongoose.connect("mongodb://localhost/project")
 }
-
 
 // mongoose.connect("mongodb://localhost/project");
 // var db = mongoose.connection;
