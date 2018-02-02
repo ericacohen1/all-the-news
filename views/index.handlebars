@@ -1,0 +1,20 @@
+{{!-- <h1>test</h1> --}}
+
+{{#each articles}}
+<div class="article">
+    
+    <h3>{{title}}</h3>
+    
+    {{!-- <p>Summary:{{note}}</p> --}}
+    <a href={{link}}>
+    <p>{{link}}</p>
+    </a>  
+    {{!-- <div class="notes">
+        {{#each notes}}
+        <div class="notes">
+            <p>Title: {{title}}</p>
+            <p>Body: {{body}}</p>
+        </div>
+    </div>   --}}
+</div>
+{{/each}}

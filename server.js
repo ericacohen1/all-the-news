@@ -6,6 +6,7 @@ var logger = require("morgan");
 var mongoose = require("mongoose");
 var request = require("request");
 var cheerio = require("cheerio");
+var path = require("path");
 
 
 // Require all models
@@ -29,7 +30,7 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 // Use express.static to serve the public folder as a static directory
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 
 // By default mongoose uses callbacks for async queries, we're setting it to use promises (.then syntax) instead
 // Connect to the Mongo DB
@@ -43,6 +44,23 @@ db.once('open', function () {
     console.log("we're connected!");
 });
 // Routes
+
+app.get("/", function(req, res) {
+    models.Article.find({})
+    .populate("note")
+    .exec(function (error, doc) {
+        if (error) {
+            console.log(error);
+            res.send("error");
+        } else {
+            console.log(doc);
+            var hbsObject = {
+                articles: doc,
+            }
+            res.render("index", hbsObject);
+        }
+    });
+});
 
 // A GET route for scraping the google website
 app.get("/scrape", function (req, res) {
@@ -148,10 +166,18 @@ app.delete("/delete/:id", function (req, res) {
             console.log(err);
         } else {
             console.log("Note has been deleted");
-            res.redirect("/");
+            res.send("Note has been deleted");
         }
     })
 })
+
+// app.get("/", function(req,res) {
+//     res.render("index");
+// });
+
+// app.get("*", function(req,res) {
+//     res.send("this page doesn't exist");
+// });
 
 // Start the server
 app.listen(PORT, function () {
