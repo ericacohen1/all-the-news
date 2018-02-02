@@ -1,4 +1,4 @@
-{{!-- <h1>test</h1> --}}
+
 <h2>Articles</h2>
 {{#each articles}}
 <div class="article">
@@ -6,23 +6,17 @@
     <h3>{{title}}</h3>
     
     {{!-- <p>Summary:{{note}}</p> --}}
-    <a href={{link}}>
-    <p>{{link}}</p>
+    <a href=https://www.reddit.com{{link}}>
+    <p>https://www.reddit.com{{link}}</p>
     </a>  
-    {{!-- <div class="notes">
+    
+    <div class="notes">
         {{#each notes}}
-        <div class="notes">
             <p>Title: {{title}}</p>
             <p>Body: {{body}}</p>
-        </div>
-    </div>   --}}
+        {{/each}}
+    </div>  
 </div>
 {{/each}}
 
-<h2>Notes</h2>
-{{#each notes}}
-<div class="notes">
-    <h3>title</h3>
-    <p>body</p>
-</div>
-{{/each}}
+

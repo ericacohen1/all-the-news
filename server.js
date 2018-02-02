@@ -47,7 +47,6 @@ if(process.env.MONGODB_URI) {
 }
 
 
-// //NEED TO UPDATE THIS
 // mongoose.connect("mongodb://localhost/project");
 // var db = mongoose.connection;
 var db = mongoose.connection;
