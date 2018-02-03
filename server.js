@@ -154,6 +154,20 @@ app.post("/articles/:id", function (req, res) {
     });
 });
 
+app.post("/article/save", function(req, res) {
+    Article.findByIdAndUpdate(req.params.id, {
+        $set: { saved: true}
+        },
+        { new: true },
+        function(error, doc) {
+            if (error) {
+                console.log(error);
+            } else {
+                res.redirect('/');
+            }
+        });
+});
+
 app.delete("/delete/:id", function (req, res) {
     var id = req.params.id.toString();
     Note.remove({
@@ -168,14 +182,6 @@ app.delete("/delete/:id", function (req, res) {
         }
     })
 })
-
-// app.get("/", function(req,res) {
-//     res.render("index");
-// });
-
-// app.get("*", function(req,res) {
-//     res.send("this page doesn't exist");
-// });
 
 // Start the server
 app.listen(PORT, function () {

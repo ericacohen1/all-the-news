@@ -8,14 +8,12 @@
     {{!-- <p>Summary:{{note}}</p> --}}
     <a href=https://www.reddit.com{{link}}>
     <p>https://www.reddit.com{{link}}</p>
-    </a>  
-    
-    <div class="notes">
-        {{#each notes}}
-            <p>Title: {{title}}</p>
-            <p>Body: {{body}}</p>
-        {{/each}}
-    </div>  
+    </a>
+
+    <form method="POST" action="/article/save">
+        <input type="hidden" value="{{id}}" name="id" />
+        <input type="submit" value="Save Article" />
+    </form>
 </div>
 {{/each}}
 
